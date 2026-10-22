@@ -205,7 +205,9 @@ func LoadTerminfo(name string) (*terminfo.Terminfo, string, error) {
 	t.Clear = tc.getstr("clear")
 	t.EnterCA = tc.getstr("smcup")
 	t.ExitCA = tc.getstr("rmcup")
-	t.ShowCursor = tc.getstr("cnorm")
+	// cnorm of many terminals (xterm, foot, ...) starts with \E[?12l, which turns the
+	// cursor blinking off every time the cursor is shown; keep the terminal's own setting.
+	t.ShowCursor = strings.ReplaceAll(tc.getstr("cnorm"), "\x1b[?12l", "")
 	t.HideCursor = tc.getstr("civis")
 	t.AttrOff = tc.getstr("sgr0")
 	t.Underline = tc.getstr("smul")
