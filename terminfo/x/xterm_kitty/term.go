@@ -16,7 +16,7 @@ func init() {
 		Clear:         "\x1b[H\x1b[2J",
 		EnterCA:       "\x1b[?1049h",
 		ExitCA:        "\x1b[?1049l",
-		ShowCursor:    "\x1b[?12l\x1b[?25h",
+		ShowCursor:    "\x1b[?25h",
 		HideCursor:    "\x1b[?25l",
 		AttrOff:       "\x1b(B\x1b[m",
 		Underline:     "\x1b[4m",
